@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong Id:
+  = @lecture.id
+p
+  strong Name:
+  = @lecture.name
+p
+  strong Description:
+  = @lecture.description
+p
+  strong Url:
+  = @lecture.url
+
+= link_to 'Edit', edit_lecture_path(@lecture)
+'|
+= link_to 'Back', lectures_path

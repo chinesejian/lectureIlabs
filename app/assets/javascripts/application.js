@@ -13,4 +13,17 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require bootstrap
+//= require moment
+//= require bootstrap-datepicker
+//= require bootstrap-timepicker
+//= require bootstrap-slider
+//= require bootstrap-tokenfield
+//= require jquery-tablesorter
 //= require_tree .
+
+//= require jquery-ui/draggable
+//= require jquery-ui/droppable
+//= require jquery-ui/resizable
+//= require jquery-ui/selectable
+//= require jquery-ui/sortable

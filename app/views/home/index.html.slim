@@ -1,0 +1,7 @@
+.jumbotron
+  h3 Lecture iLabs!
+  p Welcome to Lecture iLabs.
+  - if current_user.nil?
+    .row.home-actions
+      .col-md-1
+        = link_to "Log in", user_session_url, class: "btn btn-lg btn-primary"

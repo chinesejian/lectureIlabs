@@ -1,0 +1,37 @@
+.custom-page-header
+  h4 Create your Lecture
+
+= form_for(@lecture, as: :lecture, url: lectures_url, html: {class: "form-horizontal"}) do |f|
+    
+    .form-group
+      = f.label :name, class: "col-sm-2 control-label"
+      .col-sm-10
+        = f.text_field :name, class: "form-control", required: true
+
+    .form-group
+      = f.label :url, class: "col-sm-2 control-label"
+      .col-sm-10
+        = f.text_field :url, class: "form-control", required: true
+
+    .form-group
+      = f.label "Time", class: "col-sm-2 control-label"
+      .col-sm-10
+        .input-group.date
+          = f.text_field :starts_at, class: "form-control", id: "event_time_picker", required: true, placeholder: "Event time"
+          span.input-group-addon
+            .event-time-icon
+              span.glyphicon.glyphicon-time
+
+
+    .form-group
+      = f.label "description ", class: "col-sm-2 control-label"
+      .col-sm-10
+        = f.text_area :description, class: "form-control", required: true, id: 'description'
+
+    = f.hidden_field :host_user_id, value: current_user.id
+
+    .form-group
+      .col-md-offset-2.col-md-2
+        = f.submit "Create lecture", class: "btn btn-primary"
+      .col-md-1
+        = link_to "Cancel", lectures_url, class: "btn btn-default"
