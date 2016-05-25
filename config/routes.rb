@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root :to => "home#index"
 
   resources :lectures
-  resources :scorecards
+  resources :scorecards #, only: [:index, :create, :index, :show]
 
 
   # The priority is based upon order of creation: first created -> highest priority.

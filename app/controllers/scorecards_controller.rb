@@ -1,29 +1,21 @@
 class ScorecardsController < ApplicationController
   before_action :set_scorecard, only: [:show, :edit, :update, :destroy]
 
-  # GET /scorecards
-  # GET /scorecards.json
   def index
     @lecture = Lecture.find(params[:lecture_id])
     @scorecard = Scorecard.where(user_id: current_user.id, lecture_id: params[:lecture_id]).first || Scorecard.new
   end
 
-  # GET /scorecards/1
-  # GET /scorecards/1.json
   def show
   end
 
-  # GET /scorecards/new
   def new
     @scorecard = Scorecard.new
   end
 
-  # GET /scorecards/1/edit
   def edit
   end
 
-  # POST /scorecards
-  # POST /scorecards.json
   def create
     @scorecard = Scorecard.new(scorecard_params)
 
@@ -38,8 +30,6 @@ class ScorecardsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /scorecards/1
-  # PATCH/PUT /scorecards/1.json
   def update
     respond_to do |format|
       if @scorecard.update(scorecard_params)
@@ -51,9 +41,7 @@ class ScorecardsController < ApplicationController
       end
     end
   end
-
-  # DELETE /scorecards/1
-  # DELETE /scorecards/1.json
+ 
   def destroy
     @scorecard.destroy
     respond_to do |format|
