@@ -11,20 +11,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160523231151) do
+ActiveRecord::Schema.define(version: 20160525014830) do
 
   create_table "lectures", force: :cascade do |t|
     t.string   "name",         limit: 255
     t.string   "description",  limit: 255
     t.string   "url",          limit: 255
     t.integer  "host_user_id", limit: 4
-    t.datetime "starts_at"
-    t.datetime "ends_at"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
+    t.string   "state",        limit: 255, default: "unstart"
+    t.date     "lecture_date"
+    t.time     "lecture_time"
   end
 
   add_index "lectures", ["host_user_id"], name: "fk_rails_1fac0b8b76", using: :btree
+
+  create_table "scorecards", force: :cascade do |t|
+    t.integer  "overall",     limit: 4
+    t.integer  "content",     limit: 4
+    t.integer  "performance", limit: 4
+    t.string   "comment",     limit: 255
+    t.integer  "user_id",     limit: 4
+    t.integer  "lecture_id",  limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "scorecards", ["lecture_id"], name: "fk_rails_b4313d7396", using: :btree
+  add_index "scorecards", ["user_id"], name: "fk_rails_d4bdb5741c", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name",             limit: 255,             null: false
@@ -47,4 +62,6 @@ ActiveRecord::Schema.define(version: 20160523231151) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "lectures", "users", column: "host_user_id"
+  add_foreign_key "scorecards", "lectures"
+  add_foreign_key "scorecards", "users"
 end

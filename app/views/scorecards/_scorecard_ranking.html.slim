@@ -1,0 +1,39 @@
+.bottom-15
+    h4 Welcome to #{@lecture.name.titleize}!
+
+.container
+  = form_for(@scorecard, as: :scorecard, url: scorecards_path, html: {class: "form-horizontal"}) do |f|
+    - overall_value = @scorecard.try(:overall) || 50
+    - content_value = @scorecard.try(:content) || 50
+    - performance_value = @scorecard.try(:performance) || 50
+    - comment_value = @scorecard.try(:comment) || nil
+
+    = f.hidden_field :lecture_id, value: @lecture.id
+
+    .row.top-20
+      .col-xs-5.col-sm-2
+        span Overall
+      .col-sm-4.col-xs-7
+        = f.text_field :overall, "data-rating-attr" => "overall", "data-slider-min" => "1", "data-slider-max" => "100", "data-slider-step" => "1", "data-slider-value" => "#{overall_value}", class: "rating-slider", "data-slider-enabled" => "true"
+    .row.top-20
+      .col-xs-5.col-sm-2
+        span Content
+      .col-sm-4.col-xs-7
+        = f.text_field :content, "data-rating-attr" => "content", "data-slider-min" => "1", "data-slider-max" => "100", "data-slider-step" => "1", "data-slider-value" => "#{content_value}", class: "rating-slider", "data-slider-enabled" => "true"
+    .row.top-20
+      .col-xs-5.col-sm-2
+        span Performance
+      .col-sm-4.col-xs-7
+        = f.text_field :performance, "data-rating-attr" => "performance", "data-slider-min" => "1", "data-slider-max" => "100", "data-slider-step" => "1", "data-slider-value" => "#{performance_value}", class: "rating-slider", "data-slider-enabled" => "true"
+
+    .row.top-20
+      .col-xs-5.col-sm-2
+        span Comment
+      .col-sm-4.col-xs-7
+        = f.text_area :comment, class: "form-control"
+            
+    .row.top-25
+      span.padding-left-15
+        = f.submit "Save", class: "btn btn-primary"
+
+          

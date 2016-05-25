@@ -1,18 +1,42 @@
-p#notice = notice
+.custom-page-header
+	.row
+		.col-md-2.col-xs-2
+			strong Lecture details
+		.col-md-10.col-xs-10
+			span.pull-right.left-15
+				= link_to edit_lecture_url(@lecture.id), class: "btn btn-default" do
+					i.fa.fa-pencil
+					| Edit
+			span.pull-right.left-15
+				= link_to "Start", scorecards_url(lecture_id: @lecture.id), class: "btn btn-default" 
 
-p
-  strong Id:
-  = @lecture.id
-p
-  strong Name:
-  = @lecture.name
-p
-  strong Description:
-  = @lecture.description
-p
-  strong Url:
-  = @lecture.url
+	.package-details.top-20
+		.row.top-5
+			.col-xs-5.col-sm-2.col-sm-offset-2.col-xs-offset-2
+				strong Lecture name
+			.col-sm-4.col.xs-7
+				span #{@lecture.name}
 
-= link_to 'Edit', edit_lecture_path(@lecture)
-'|
-= link_to 'Back', lectures_path
+		.row.top-5
+			.col-xs-5.col-sm-2.col-sm-offset-2.col-xs-offset-2
+				strong Host user
+			.col-sm-4.col.xs-7
+				span #{@lecture.host.first_name}
+
+		.row.top-5
+			.col-xs-5.col-sm-2.col-sm-offset-2.col-xs-offset-2
+				strong Description
+			.col-sm-4.col.xs-7
+				span #{@lecture.description}
+
+		.row.top-5
+			.col-xs-5.col-sm-2.col-sm-offset-2.col-xs-offset-2
+				strong Date
+			.col-sm-4.col.xs-7
+				span #{@lecture.parse_lecture_date}
+
+		.row.top-5
+			.col-xs-5.col-sm-2.col-sm-offset-2.col-xs-offset-2
+				strong Time
+			.col-sm-4.col.xs-7
+				span #{@lecture.parse_lecture_time}

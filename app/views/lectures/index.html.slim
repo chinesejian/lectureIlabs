@@ -1,27 +1,31 @@
-h1 Listing lectures
+.lecture-header
+  .row
+    .col-md-4.col-xs-4
+      strong Lectures
 
-table
-  thead
-    tr
-      th Id
-      th Name
-      th Description
-      th Url
-      th
-      th
-      th
+- if @lectures.empty?
+  span No lecture found.
 
-  tbody
-    - @lectures.each do |lecture|
-      tr
-        td = lecture.id
-        td = lecture.name
-        td = lecture.description
-        td = lecture.url
-        td = link_to 'Show', lecture
-        td = link_to 'Edit', edit_lecture_path(lecture)
-        td = link_to 'Destroy', lecture, data: {:confirm => 'Are you sure?'}, :method => :delete
+- else
+  .table-container
+    table.table
+      thead
+        tr
+          th Name
+          th Host User
+          th
 
-br
+      tbody
+        - @lectures.each do |lecture|
+          tr
+            td
+              = link_to "#{lecture.name}", lecture_url(lecture.id)
+            #{lecture.name}
+            td #{lecture.host.first_name}
+            td
+              = link_to edit_lecture_url(lecture.id), class: "btn btn-default" do
+                i.fa.fa-pencil
+                | Edit
+
 
 = link_to 'New Lecture', new_lecture_path

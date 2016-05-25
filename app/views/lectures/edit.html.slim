@@ -1,8 +1,45 @@
-h1 Editing lecture
+.custom-page-header
+  h4 Editing your Lecture
 
-== render 'form'
+= form_for(@lecture, url: lecture_url(@lecture.id), method: :put, html: {class: "form-horizontal"}) do |f| 
+    .form-group
+      = f.label :name, class: "col-sm-2 control-label"
+      .col-sm-10
+        = f.text_field :name, class: "form-control", required: true
 
-= link_to 'Show', @lecture
-'|
-= link_to 'Back', lectures_path
+    .form-group
+      = f.label :url, class: "col-sm-2 control-label"
+      .col-sm-10
+        = f.text_field :url, class: "form-control", required: true
+
+    .form-group
+      = f.label "Date", class: "col-sm-2 control-label"
+      .col-sm-10
+        .input-group.date
+          = f.text_field :lecture_date, value: f.object.parse_lecture_date,  class: "form-control", id: "lecture_date_picker", required: true, placeholder: "Lecture date"
+          span.input-group-addon
+            .event-date-icon
+              span.glyphicon.glyphicon-calendar
+
+    .form-group
+      = f.label "Time", class: "col-sm-2 control-label"
+      .col-sm-10
+        .input-group.date
+          = f.text_field :lecture_time, value: f.object.parse_lecture_time, class: "form-control", id: "lecture_time_picker", required: true, placeholder: "Lecture time"
+          span.input-group-addon
+            .event-time-icon
+              span.glyphicon.glyphicon-time
+
+
+    .form-group
+      = f.label "description ", class: "col-sm-2 control-label"
+      .col-sm-10
+        = f.text_area :description, class: "form-control", required: true, id: 'lecture_description'
+
+    .form-group
+      .col-md-offset-2.col-md-2
+        = f.submit "Create lecture", class: "btn btn-primary"
+      .col-md-1
+        = link_to "Cancel", lectures_url, class: "btn btn-default"
+
 

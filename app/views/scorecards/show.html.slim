@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong Overall:
+  = @scorecard.overall
+p
+  strong Content:
+  = @scorecard.content
+p
+  strong Performance:
+  = @scorecard.performance
+p
+  strong Comment:
+  = @scorecard.comment
+
+= link_to 'Edit', edit_scorecard_path(@scorecard)
+'|
+= link_to 'Back', scorecards_path

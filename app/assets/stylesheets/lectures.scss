@@ -1,3 +1,28 @@
-// Place all the styles related to the Lectures controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.lecture-header {
+  margin-bottom: 25px;
+  .add-btn {
+    text-align: right;
+  }
+  strong {
+    font-size: 1.12em;
+  }
+
+}
+
+form {
+  .edit-lecture {
+    .col-md-2 { width: 11% }
+  }
+
+  .add-lecture {
+    .col-md-2 { width: 8.5% }
+  }
+}
+
+
+// Media queries
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 568px) and (orientation : portrait) {
+  .lecture-header {
+  }
+}
